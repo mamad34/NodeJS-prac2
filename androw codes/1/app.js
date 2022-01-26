@@ -47,4 +47,70 @@ console.log(getNotes());
 
 // console.log(chalk.green("Success!"));
 
-console.log("aaasdasd ");
+//***********************************//
+// Start of Season 4
+//***********************************//
+
+const { command, demandOption } = require("yargs");
+const yargs = require("yargs");
+
+// Customize yargs version
+
+yargs.version("85.85.85");
+
+// Create add command
+
+yargs.command({
+  command: "add",
+  describe: "Add a new note",
+  builder: {
+    title: {
+      describe: "Note Title",
+      demandOption: true,
+      type: "string",
+    },
+    body: {
+      describe: "Note body ",
+      demandOption: true,
+      type: "string",
+    },
+  },
+  handler: function (argv) {
+    console.log("Title : " + argv.title);
+    console.log("Body : " + argv.body);
+  },
+});
+
+// Create remove command
+
+yargs.command({
+  command: "remove",
+  describe: "remove a note ",
+  handler: function () {
+    console.log("Removing the note ");
+  },
+});
+
+yargs.command({
+  command: "list",
+  describe: "listing some items",
+  handler: function () {
+    console.log("listing some notes");
+  },
+});
+
+yargs.command({
+  command: "read",
+  describe: "read some content of a file",
+  handler: function () {
+    console.log("reading content of files");
+  },
+});
+
+// console.log(process.argv);
+
+// console.log(yargs.argv);
+// instead of using above clg we van use :
+yargs.parse();
+
+// npm install yargs
