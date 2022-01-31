@@ -53,6 +53,7 @@ console.log(getNotes());
 
 const { command, demandOption } = require("yargs");
 const yargs = require("yargs");
+const notes = require("./notes.js");
 
 // Customize yargs version
 
@@ -76,8 +77,8 @@ yargs.command({
     },
   },
   handler: function (argv) {
-    console.log("Title : " + argv.title);
-    console.log("Body : " + argv.body);
+    notes.addnote(argv.title, argv.body);
+    console.log(" hi bitch ");
   },
 });
 
