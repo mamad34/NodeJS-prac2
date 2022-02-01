@@ -51,11 +51,13 @@ console.log(getNotes());
 // Start of Season 4
 //***********************************//
 
-const { command, demandOption } = require("yargs");
+const { command, demandOption, argv } = require("yargs");
 const yargs = require("yargs");
 const notes = require("./notes.js");
 
 // Customize yargs version
+
+console.log(argv);
 
 yargs.version("85.85.85");
 
@@ -76,7 +78,7 @@ yargs.command({
       type: "string",
     },
   },
-  handler: function (argv) {
+  handler(argv) {
     notes.addnote(argv.title, argv.body);
     console.log(" hi bitch ");
   },
@@ -87,24 +89,36 @@ yargs.command({
 yargs.command({
   command: "remove",
   describe: "remove a note ",
-  handler: function () {
-    console.log("Removing the note ");
+  builder: {
+    title: {
+      describe: "remove a note from title",
+      demandOption: true,
+      type: "string",
+    },
+  },
+  handler(argv) {
+    notes.removeNote(argv.title);
   },
 });
 
 yargs.command({
   command: "list",
   describe: "listing some items",
-  handler: function () {
-    console.log("listing some notes");
+  handler() {
+    notes.listNotes();
   },
 });
 
 yargs.command({
   command: "read",
   describe: "read some content of a file",
-  handler: function () {
-    console.log("reading content of files");
+  title: {
+    describe: "read the content of a file",
+    demandOption: true,
+    type: "string",
+  },
+  handler(argv) {
+    notes.readNotes(argv.title);
   },
 });
 
