@@ -12,6 +12,8 @@ const addNote = (title, body) => {
 
   const duplicateNote = notes.find((note) => note.title === title); // find will stop after first match
 
+  // debugger;
+
   if (!duplicateNote) {
     notes.push({
       title: title,
@@ -67,7 +69,6 @@ const readNotes = (title) => {
     console.log(foundedNote);
   } else {
     console.log("the item dose not found");
-    
   }
 };
 
