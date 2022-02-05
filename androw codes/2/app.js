@@ -14,7 +14,7 @@
 // npm init -y yes to all
 
 const request = require("request");
-
+/*
 const url =
   "https://api.weatherapi.com/v1/forecast.json?key=122473ea8c4b4cec923164030220402&q=Tehran&days=1&aqi=yes&alerts=no&lang=ar";
 
@@ -50,4 +50,16 @@ request({ url: url2, json: true }, (error, response) => {
     console.log("The lat of LA is : " + response.body.features[0].center[0]);
     console.log("The lon of LA is : " + response.body.features[0].center[1]);
   }
+});
+*/
+const geocode = require("./utils/geocode");
+geocode("Tehran", (error, data) => {
+  console.log("Error : ", error);
+  console.log("Data : ", data);
+});
+
+const forecast = require("./utils/forcast");
+forecast(51.5098, -0.118, (error, data) => {
+  console.log("Error", error);
+  console.log("Data", data);
 });

@@ -9,20 +9,21 @@ const shortNames = names.filter((name) => {
 
 // with no call back
 
-const pitico = (address, cb) => {
+const pitico = () => {
   setTimeout(() => {
     const data = {
       f: "f",
       u: "u",
     };
+    console.log("Fuck");
     return data;
   }, 3000);
 };
 
 setTimeout(() => {
-  const runPitico = pitico("ho yea");
+  const runPitico = pitico();
   console.log(runPitico);
-}, 3001);
+}, 6000);
 // console.log(runPitico);
 
 const geocode = (address, callback) => {
@@ -32,9 +33,33 @@ const geocode = (address, callback) => {
       longitude: 0,
     };
     callback(data);
-  }, 1999);
+  }, 2000);
 };
 
 geocode("Philadelphia", (data2) => {
   console.log(data2);
+});
+
+/*
+two sec
+{ latitude: 0, longitude: 0 }
+undefined
+Fuck
+*/
+
+// Goal: Mess around with the callback pattern
+//
+// 1. Define an add function that accepts the correct arguments
+// 2. Use setTimeout to simulate a 2 second delay
+// 3. After 2 seconds are up, call the callback function with the sum
+// 4. Test your work!
+
+const add = (x, y, callback) => {
+  setTimeout(() => {
+    callback(x + y);
+  }, 2000);
+};
+
+add(1, 4, (sum) => {
+  console.log(sum); // Should print: 5
 });
