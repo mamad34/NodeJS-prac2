@@ -21,11 +21,33 @@ const url =
 request({ url: url, json: true }, (error, response) => {
   // const data = JSON.parse(response.body); // with json : true no neet to parse it
   // console.log(data.current);
-  console.log(
-    ` the weather of ${response.body.location.name} is ${response.body.current.condition.text} & the degree is : ${response.body.current.temp_c}C`
-  );
-  console.log(
-    "The max temp will be : " +
-      response.body.forecast.forecastday[0].day.maxtemp_c
-  );
+  if (error) {
+    console.log("Some Error happend");
+  } else if (response.body.error) {
+    console.log("Unable to find location ");
+  } else {
+    console.log(
+      ` the weather of ${response.body.location.name} is ${response.body.current.condition.text} & the degree is : ${response.body.current.temp_c}C`
+    );
+    console.log(
+      "The max temp will be : " +
+        response.body.forecast.forecastday[0].day.maxtemp_c
+    );
+  }
+});
+
+const url2 =
+  "https://api.mapbox.com/geocoding/v5/mapbox.places/Los%20Angeles.json?access_token=pk.eyJ1IjoibW9odGhyIiwiYSI6ImNremEweWUyZzBjc2cybnMyZXUwZXh0d3YifQ.uOQibBXXa4HID9MZWlF9sA&limit=1";
+
+request({ url: url2, json: true }, (error, response) => {
+  if (error) {
+    console.log("Error in get map box api");
+  } else if (response.body.error) {
+    console.log("Unable to find correct info");
+  } else if (response.body.message) {
+    console.log("there was an error :", response.body.message);
+  } else {
+    console.log("The lat of LA is : " + response.body.features[0].center[0]);
+    console.log("The lon of LA is : " + response.body.features[0].center[1]);
+  }
 });
