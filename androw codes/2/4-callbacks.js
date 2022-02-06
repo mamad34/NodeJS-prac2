@@ -63,3 +63,39 @@ const add = (x, y, callback) => {
 add(1, 4, (sum) => {
   console.log(sum); // Should print: 5
 });
+
+const users = ["johnny", "rock", "blesar"];
+
+function addUser(username) {
+  setTimeout(() => {
+    users.push(username);
+  }, 2000);
+}
+
+function getUser() {
+  setTimeout(() => {
+    console.log(users);
+  }, 1000);
+}
+
+addUser("New User");
+getUser();
+
+//////////////////////
+
+const users2 = ["a", "b", "c"];
+
+function addUser2(username, callback) {
+  setTimeout(() => {
+    users2.push(username);
+    callback();
+  }, 10000);
+}
+
+function getUser2() {
+  setTimeout(() => {
+    console.log(users2);
+  }, 1000);
+}
+
+addUser2("Mamad", getUser2);
