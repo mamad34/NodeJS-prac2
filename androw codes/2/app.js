@@ -53,13 +53,29 @@ request({ url: url2, json: true }, (error, response) => {
 });
 */
 const geocode = require("./utils/geocode");
-geocode("Tehran", (error, data) => {
-  console.log("Error : ", error);
-  console.log("Data : ", data);
-});
-
 const forecast = require("./utils/forcast");
-forecast(51.5098, -0.118, (error, data) => {
-  console.log("Error", error);
-  console.log("Data", data);
-});
+const yargs = require("yargs");
+
+console.log("the city name of user :  " + yargs.argv);
+console.log(yargs.argv._[0]);
+const cityOfUser = yargs.argv._[0];
+if (cityOfUser) {
+  geocode(cityOfUser, (error, data) => {
+    if (error) {
+      return console.log(error);
+    }
+    // console.log("Error : ", error);
+    // console.log("Data : ", data);
+    forecast(data.latitude, data.longitude, (error, forecastData) => {
+      if (error) {
+        return console.log(error);
+      }
+      console.log(data.location);
+      console.log(forecastData);
+      // console.log("Error", error);
+      // console.log("Data", data);
+    });
+  });
+} else {
+  console.log("insert a valid city");
+}

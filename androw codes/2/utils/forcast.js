@@ -10,15 +10,24 @@ const forecast = (latitude, longitude, callback) => {
     } else if (response.body.length === 0) {
       callback("this geolocation is not valid it may be on milkway", undefined);
     } else {
-      city = response.body[0].name;
-      console.log(city);
+      try {
+        if (response.body[0].name) {
+          city = response.body[0].name;
+          console.log(city);
+        }
+      } catch (e) {
+        console.log("The BullShit API cant find that city from lon lat");
+      }
     }
     if (city !== undefined) {
       console.log("dick");
       const urlForcast = `https://api.weatherapi.com/v1/forecast.json?key=122473ea8c4b4cec923164030220402&q=${city}&days=1&aqi=yes&alerts=no&lang=ar`;
       request({ url: urlForcast, json: true }, (error, response) => {
         if (error) {
-          callback("Some Error happend", undefined);
+          callback(
+            "Some Error happend in finding weather of city : " + city,
+            undefined
+          );
         } else if (response.body.error) {
           callback("Unable to find location", undefined);
         } else {
