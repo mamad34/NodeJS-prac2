@@ -5,7 +5,7 @@ const geocode = (adrress, callback) => {
     adrress +
     ".json?access_token=pk.eyJ1IjoibW9odGhyIiwiYSI6ImNremEweWUyZzBjc2cybnMyZXUwZXh0d3YifQ.uOQibBXXa4HID9MZWlF9sA&limit=1";
 
-  request({ url: url, json: true }, (error, response) => {
+  request({ url, json: true }, (error, response) => {
     if (error) {
       callback("Error in get map box api", undefined);
     } else if (response.body.error) {

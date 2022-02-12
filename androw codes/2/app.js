@@ -60,17 +60,17 @@ console.log("the city name of user :  " + yargs.argv);
 console.log(yargs.argv._[0]);
 const cityOfUser = yargs.argv._[0];
 if (cityOfUser) {
-  geocode(cityOfUser, (error, data) => {
+  geocode(cityOfUser, (error, { latitude, longitude, location }) => {
     if (error) {
       return console.log(error);
     }
     // console.log("Error : ", error);
     // console.log("Data : ", data);
-    forecast(data.latitude, data.longitude, (error, forecastData) => {
+    forecast(latitude, longitude, (error, forecastData) => {
       if (error) {
         return console.log(error);
       }
-      console.log(data.location);
+      console.log(location);
       console.log(forecastData);
       // console.log("Error", error);
       // console.log("Data", data);

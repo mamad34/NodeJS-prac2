@@ -1,18 +1,18 @@
 const request = require("request");
 const forecast = (latitude, longitude, callback) => {
   const urlGeo = `http://api.openweathermap.org/geo/1.0/reverse?lat=${latitude}&lon=${longitude}&limit=5&appid=fcd73a3597bfd2d1e0a7bf76a147a393`;
-  request({ url: urlGeo, json: true }, (error, response) => {
+  request({ url: urlGeo, json: true }, (error, { body }) => {
     let city;
     if (error) {
       callback("Problem in get the long and lat ", undefined);
-    } else if (response.body.code) {
-      callback(response.body.code + response.body.message);
-    } else if (response.body.length === 0) {
+    } else if (body.code) {
+      callback(body.code + body.message);
+    } else if (body.length === 0) {
       callback("this geolocation is not valid it may be on milkway", undefined);
     } else {
       try {
-        if (response.body[0].name) {
-          city = response.body[0].name;
+        if (body[0].name) {
+          city = body[0].name;
           console.log(city);
         }
       } catch (e) {
