@@ -9,14 +9,36 @@ const app = express();
 
 const publicDirectory = path.join(__dirname, "../public");
 
-// For now app.use() is a way to customize out server
-// in section 047 npm i hbs
-app.use(express.static(publicDirectory));
-
 // set alows you to set a value for a express setting
 // this line will setup handelbars
 app.set("view engine", "hbs");
 
+// For now app.use() is a way to customize out server
+// in section 047 npm i hbs
+app.use(express.static(publicDirectory));
+
+app.get("", (req, res) => {
+  // render use for sendig views like hbs
+  // index is -> index.hbs / automaticly it will go to views folder
+  // second arg is what we want to pass to hbs
+  res.render("index", {
+    title: "Weather App",
+    name: "Androw Mead",
+  });
+});
+
+app.get("/about", (req, res) => {
+  res.render("about", {
+    title: "About Me",
+    name: "Androw Mead",
+  });
+});
+
+app.get("/help", (req, res) => {
+  res.render("help", {
+    helpMessage: "This is Help page",
+  });
+});
 /*
 app.get("", (req, res) => {
   res.send("<h1>Hello Express</h1>");
