@@ -81,6 +81,21 @@ app.get("/weather", (req, res) => {
   });
 });
 
+app.get("/help/*", (req, res) => {
+  res.render("404", {
+    title: "Help article not found",
+    name: "Mamad Mead",
+  });
+});
+
+// Setting Up the 404 Page // * means anything that hasent match so far
+app.get("*", (req, res) => {
+  res.render("404", {
+    title: "Page Not Found 404",
+    name: "Mamad Mead",
+  });
+});
+
 app.listen(3000, () => {
   console.log("Server Started");
 });
