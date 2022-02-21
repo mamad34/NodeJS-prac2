@@ -1,5 +1,6 @@
 const path = require("path");
 const express = require("express");
+const hbs = require("hbs");
 
 console.log(__dirname);
 console.log(__filename);
@@ -7,14 +8,25 @@ console.log(path.join(__dirname, "../public"));
 
 const app = express();
 
+// define paths for express config
 const publicDirectory = path.join(__dirname, "../public");
+const viewsDirectory = path.join(__dirname, "../templates/views");
+const partialsPath = path.join(__dirname, "../templates/partials");
+
+// this line is using template folder and set it as the views folder of view engings like hbs
+app.set("views", viewsDirectory);
 
 // set alows you to set a value for a express setting
 // this line will setup handelbars
 app.set("view engine", "hbs");
 
+// setting partials path for handelbars
+// nodemon src/app.js -e js,hbs // tell nodemon that restart when we save hbs & js files
+hbs.registerPartials(partialsPath);
+
 // For now app.use() is a way to customize out server
 // in section 047 npm i hbs
+//Setup static directory to serve // now public dir is serving css and js files
 app.use(express.static(publicDirectory));
 
 app.get("", (req, res) => {
@@ -37,6 +49,8 @@ app.get("/about", (req, res) => {
 app.get("/help", (req, res) => {
   res.render("help", {
     helpMessage: "This is Help page",
+    title: "Help",
+    name: "Androw",
   });
 });
 /*
