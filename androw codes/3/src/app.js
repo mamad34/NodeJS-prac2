@@ -1,6 +1,11 @@
 const path = require("path");
 const express = require("express");
 const hbs = require("hbs");
+const forecast = require("../utils/forcast");
+const geocode = require("../utils/geocode");
+const { response } = require("express");
+const res = require("express/lib/response");
+const req = require("express/lib/request");
 
 console.log(__dirname);
 console.log(__filename);
@@ -75,9 +80,41 @@ app.get("/about", (req, res) => {
 */
 
 app.get("/weather", (req, res) => {
+  if (!req.query.address) {
+    return res.send({
+      error: "Error You soulde provide an address",
+    });
+  }
+  geocode(
+    req.query.address,
+    (error, { latitude, longitude, location } = {}) => {
+      if (error) {
+        return res.send({ error });
+      }
+      forecast(latitude, longitude, (err, forcastData) => {
+        if (err) {
+          response.send({ err });
+        }
+        res.send({
+          forcast: forcastData,
+          location,
+          address: req.query.address,
+        });
+      });
+    }
+  );
+});
+
+app.get("/products", (req, res) => {
+  if (!req.query.search) {
+    return res.send({
+      error: "You must provide a search term",
+    });
+  }
+  console.log(req.query);
+  console.log(req.query.search);
   res.send({
-    location: "Philadelphia",
-    forcast: "This is 6C dgree & sunny",
+    products: [],
   });
 });
 
