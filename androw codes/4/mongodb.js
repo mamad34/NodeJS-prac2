@@ -152,38 +152,60 @@ MongoClient.connect(
     // find dose not support CallBack it returns a Cursor OR Pointer
     // and the cursor has toArray method that have a CallBack Function
 
-    db.collection("users")
-      .find({ age: 85 })
-      .toArray((error, users) => {
-        console.log(users);
-      });
+    // db.collection("users")
+    //   .find({ age: 85 })
+    //   .toArray((error, users) => {
+    //     console.log(users);
+    //   });
 
-    db.collection("users")
-      .find({ age: 85 })
-      .count((error, count) => {
-        console.log(count);
-      });
+    // db.collection("users")
+    //   .find({ age: 85 })
+    //   .count((error, count) => {
+    //     console.log(count);
+    //   });
 
     ////////////////////////////////////////////////////////
     //CHALANGE OF READING
     ////////////////////////////////////////////////////////
 
-    db.collection("tasks").findOne(
-      {
-        _id: new ObjectID("62263f071659b60ec6f2a074"),
-      },
-      (error, lastTask) => {
-        if (error) {
-          return console.log("Error while finding last task");
-        }
-        console.log("last task is : ", lastTask);
-      }
-    );
+    // db.collection("tasks").findOne(
+    //   {
+    //     _id: new ObjectID("62263f071659b60ec6f2a074"),
+    //   },
+    //   (error, lastTask) => {
+    //     if (error) {
+    //       return console.log("Error while finding last task");
+    //     }
+    //     console.log("last task is : ", lastTask);
+    //   }
+    // );
 
-    db.collection("tasks")
-      .find({ complete: true })
-      .toArray((error, completedTasks) => {
-        console.log(completedTasks);
+    // db.collection("tasks")
+    //   .find({ complete: true })
+    //   .toArray((error, completedTasks) => {
+    //     console.log(completedTasks);
+    //   });
+
+    ////////////////////////////////////////////////////////
+    //UPDATING IN MONGODB
+    ////////////////////////////////////////////////////////
+
+    db.collection("users")
+      .updateOne(
+        {
+          _id: new ObjectID("622654cef6025e01dbbebc82"),
+        },
+        {
+          $set: {
+            name: "Alexis Texas",
+          },
+        }
+      )
+      .then((result) => {
+        console.log(result);
+      })
+      .catch((error) => {
+        console.log(error);
       });
   }
 );
