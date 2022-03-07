@@ -31,7 +31,9 @@ MongoClient.connect(
 
     const db = client.db(databaseName);
 
+    ////////////////////////////////////////////////////////
     // insert one
+    ////////////////////////////////////////////////////////
 
     // db.collection("users").insertOne(
     //   {
@@ -54,7 +56,9 @@ MongoClient.connect(
     //   }
     // );
 
+    ////////////////////////////////////////////////////////
     //insert many
+    ////////////////////////////////////////////////////////
 
     // db.collection("users").insertMany(
     //   [
@@ -89,7 +93,9 @@ MongoClient.connect(
     //   }
     // );
 
+    ////////////////////////////////////////////////////////
     // Challange Code
+    ////////////////////////////////////////////////////////
 
     // db.collection("tasks").insertMany(
     //   [
@@ -118,5 +124,66 @@ MongoClient.connect(
     //     }
     //   }
     // );
+
+    ////////////////////////////////////////////////////////
+    //READING DATA
+    ////////////////////////////////////////////////////////
+
+    // db.collection("users").findOne(
+    //   { name: "Johnny Sins", age: 1 },
+    //   (error, user) => {
+    //     if (error) {
+    //       return console.log("Unable To Fetch");
+    //     }
+    //     console.log(user);
+    //   }
+    // );
+
+    // db.collection("users").findOne(
+    //   { _id: new ObjectID("62263e25e9bb9267802f4780") },
+    //   (error, user) => {
+    //     if (error) {
+    //       return console.log("Unable To Fetch");
+    //     }
+    //     console.log(user);
+    //   }
+    // );
+
+    // find dose not support CallBack it returns a Cursor OR Pointer
+    // and the cursor has toArray method that have a CallBack Function
+
+    db.collection("users")
+      .find({ age: 85 })
+      .toArray((error, users) => {
+        console.log(users);
+      });
+
+    db.collection("users")
+      .find({ age: 85 })
+      .count((error, count) => {
+        console.log(count);
+      });
+
+    ////////////////////////////////////////////////////////
+    //CHALANGE OF READING
+    ////////////////////////////////////////////////////////
+
+    db.collection("tasks").findOne(
+      {
+        _id: new ObjectID("62263f071659b60ec6f2a074"),
+      },
+      (error, lastTask) => {
+        if (error) {
+          return console.log("Error while finding last task");
+        }
+        console.log("last task is : ", lastTask);
+      }
+    );
+
+    db.collection("tasks")
+      .find({ complete: true })
+      .toArray((error, completedTasks) => {
+        console.log(completedTasks);
+      });
   }
 );
