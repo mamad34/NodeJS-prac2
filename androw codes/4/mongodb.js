@@ -32,7 +32,7 @@ MongoClient.connect(
     const db = client.db(databaseName);
 
     ////////////////////////////////////////////////////////
-    // insert one
+    // insert one CREATE
     ////////////////////////////////////////////////////////
 
     // db.collection("users").insertOne(
@@ -190,22 +190,70 @@ MongoClient.connect(
     //UPDATING IN MONGODB
     ////////////////////////////////////////////////////////
 
-    db.collection("users")
-      .updateOne(
-        {
-          _id: new ObjectID("622654cef6025e01dbbebc82"),
-        },
-        {
-          $set: {
-            name: "Alexis Texas",
-          },
-        }
-      )
+    // db.collection("users")
+    //   .updateOne(
+    //     {
+    //       _id: new ObjectID("622654cef6025e01dbbebc82"),
+    //     },
+    //     {
+    //       // $set is an update operator
+    //       $set: {
+    //         name: "Alexis Texas",
+    //       },
+    //       $inc: {
+    //         age: 1,
+    //       },
+    //     }
+    //   )
+    //   .then((result) => {
+    //     console.log(result);
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
+
+    // db.collection("tasks")
+    //   .updateMany(
+    //     {
+    //       complete: false,
+    //     },
+    //     {
+    //       $set: {
+    //         complete: true,
+    //       },
+    //     }
+    //   )
+    //   .then((result) => {
+    //     console.log("result", result.modifiedCount);
+    //   })
+    //   .catch((error) => {
+    //     console.log("err", error);
+    //   });
+
+    ////////////////////////////////////////////////////////
+    // DELETING IN MONGODB
+    ////////////////////////////////////////////////////////
+
+    // db.collection("users")
+    //   .deleteMany({
+    //     age: 23,
+    //   })
+    //   .then((result) => {
+    //     console.log("result", result);
+    //   })
+    //   .catch((error) => {
+    //     console.log("error", error);
+    //   });
+
+    db.collection("tasks")
+      .deleteOne({
+        discription: "Bullshit masterbate to do",
+      })
       .then((result) => {
         console.log(result);
       })
-      .catch((error) => {
-        console.log(error);
+      .catch((err) => {
+        console.log(err);
       });
   }
 );
