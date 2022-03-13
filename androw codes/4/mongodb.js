@@ -245,15 +245,17 @@ MongoClient.connect(
     //     console.log("error", error);
     //   });
 
-    db.collection("tasks")
-      .deleteOne({
-        discription: "Bullshit masterbate to do",
-      })
-      .then((result) => {
-        console.log(result);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    // db.collection("tasks")
+    //   .deleteOne({
+    //     discription: "Bullshit masterbate to do",
+    //   })
+    //   .then((result) => {
+    //     console.log(result);
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
   }
 );
+
+// Install mongoose
