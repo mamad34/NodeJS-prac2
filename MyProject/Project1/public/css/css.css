@@ -1,0 +1,60 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+body {
+  width: 600px;
+  margin: 0 auto;
+}
+
+h1 {
+  color: coral;
+}
+a {
+  color: grey;
+  text-decoration: none;
+}
+
+a:hover {
+  color: coral;
+}
+
+li:not(:first-child) {
+  margin-left: 18px;
+}
+
+ul {
+  margin-top: 24px;
+  display: flex;
+  list-style: none;
+}
+
+label {
+  color: coral;
+  display: inline-block;
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
+
+form {
+  margin-top: 48px;
+}
+
+input {
+  width: 100%;
+  padding: 8px 0;
+  display: block;
+}
+
+button {
+  width: 240px;
+  color: white;
+  border: 0px;
+  margin-left: 180px;
+  background-color: coral;
+  margin-top: 24px;
+  padding: 16px 48px;
+}
