@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/css.css">
+    <title>lyricsy</title>
+</head>
+<body>
+    <header>
+        <h1>Lyrics Finder</h1>
+        <ul>
+            <li><a href="">lyrics</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/help">Help</a></li>
+        </ul>
+    </header>
+
+    <form method="post" action="http://localhost:3000/get-lyrics" onsubmit="myButton.disabled = true; return true;">
+        <label for="input">Title:</label>
+        <input  placeholder="Insert Title" type="text" id="title" name="title">
+              <label for="input">Artist:</label>
+        <input placeholder="Insert Artist" type="text" id="artist" name="artist">
+        <button type="submit" name="myButton">Search</button>
+    </form>
+
+    <h4></h4>
+
+<script src="script/app.js"></script>
+</body>
+</html>
