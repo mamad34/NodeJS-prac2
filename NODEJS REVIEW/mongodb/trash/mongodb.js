@@ -26,31 +26,30 @@ MongoClient.connect(
     console.log("Connect Correctly");
 
     const db = client.db(databaseName);
-
-    ////////////////////////////// DELETE
-
-    db.collection("users")
-      .deleteMany({
-        age: 24,
-      })
-      .then((result) => {
-        console.log(result);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-
-    db.collection("tasks")
-      .deleteOne({ description: "lick pussy" })
-      .then((result) => {
-        console.log(result);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
   }
 );
 
+// ////////////////////////////// DELETE
+
+// db.collection("users")
+//   .deleteMany({
+//     age: 24,
+//   })
+//   .then((result) => {
+//     console.log(result);
+//   })
+//   .catch((error) => {
+//     console.log(error);
+//   });
+
+// db.collection("tasks")
+//   .deleteOne({ description: "lick pussy" })
+//   .then((result) => {
+//     console.log(result);
+//   })
+//   .catch((error) => {
+//     console.log(error);
+//   });
 ///////////////////////////////// UPDATE METHOD
 
 // db.collection("users")
